@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "a8aadcee-9e95-4e64-aac6-42cab23e1cb1",
+		"_postman_id": "bd54adfb-3ddd-48a4-8347-b016d2eee1f0",
 		"name": "Desafio",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -54,6 +54,13 @@
 									"pm.test(\"Validar que el userId es un número\", function () {\r",
 									"pm.expect(jsonData[0].id).to.be.a('number'); \r",
 									"});\r",
+									"\r",
+									"pm.test(\"Validar que los headers existan\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\");\r",
+									"    pm.response.to.have.header(\"Connection\");\r",
+									"});\r",
+									"\r",
+									"\r",
 									""
 								],
 								"type": "text/javascript"
