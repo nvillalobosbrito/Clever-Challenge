@@ -1,0 +1,261 @@
+{
+	"info": {
+		"_postman_id": "a8aadcee-9e95-4e64-aac6-42cab23e1cb1",
+		"name": "Desafio",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "GET - Users",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b41a932c-42bc-40b3-9bc7-1b27313ecb1c",
+								"exec": [
+									"const jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Validar que el status sea igual a 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Validar que la estructura sea la correcta\", () => {\r",
+									"    pm.expect(pm.response.text()).to.include(\"id\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"name\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"username\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"email\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"address\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"street\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"suite\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"city\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"zipcode\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"geo\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"lat\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"lng\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"phone\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"website\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"company\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"name\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"catchPhrase\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"bs\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header es application/json; charset=utf-8\", () => {\r",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Tiempo de respuesta debe ser menor a 500\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Validar que el userId es un número\", function () {\r",
+									"pm.expect(jsonData[0].id).to.be.a('number'); \r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{host}}/{{pathUsers}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"{{pathUsers}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "This folder contains endpoint and tests for User Api"
+		},
+		{
+			"name": "Photo",
+			"item": [
+				{
+					"name": "GET - Photos",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "5e671571-567a-4317-9a9a-804e05acdce7",
+								"exec": [
+									"const jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Validamos que el status sea 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Validamos que la estructura de los posts sea la correcta\", () => {\r",
+									"    pm.expect(pm.response.text()).to.include(\"albumId\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"id\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"title\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"url\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"thumbnailUrl\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header es application/json\", () => {\r",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Tiempo de respuesta debe ser menor a 500\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Validar la url\", function () {\r",
+									"    pm.expect(jsonData[0].url).to.eql(\"https://via.placeholder.com/600/92c952\");\r",
+									"    pm.expect(jsonData[0].url).to.be.a('string');\r",
+									"    pm.expect(jsonData[0].url).to.include('https://via.placeholder.com');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Validar la cantidad de registros\", function (){\r",
+									"    pm.expect(jsonData).not.equal(99);\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{host}}/{{pathPhotos}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"{{pathPhotos}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "This folder contains endpoint and tests for Photo Api"
+		},
+		{
+			"name": "Post",
+			"item": [
+				{
+					"name": "POST - Posts",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e0942f49-3021-407a-9231-2667c5c9621f",
+								"exec": [
+									"pm.test(\"Verificar que el estatus de respuesta sea 201\", function (){\r",
+									"pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verificar si el atributo id de respuesta es igual a 101\", function (){\r",
+									"    jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.id).to.eql(101);\r",
+									"});\r",
+									"\r",
+									"const postsSchema = {\r",
+									"   userId : '',\r",
+									"   title: '',\r",
+									"   body: ''\r",
+									"}\r",
+									"\r",
+									"const body = JSON.parse(pm.request.body.raw);\r",
+									"const sameSchema = JSON.stringify(Object.keys(postsSchema)) === JSON.stringify(Object.keys(body));\r",
+									"let respuesta=pm.response.json();\r",
+									"\r",
+									"pm.test(\"Validar el esquema\", () => {\r",
+									"    pm.expect(true).to.be.eql(sameSchema);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verificar que el título sea de tipo string\", function () {\r",
+									"pm.expect(respuesta.title).to.be.a('string'); \r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verificar que el id sea de tipo número\", function () {\r",
+									"pm.expect(respuesta.userId).to.be.a('number'); \r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verificar que el título no se encuentre vacío\", function () {\r",
+									"pm.expect(respuesta.title).to.not.be.empty;\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"userId\":{{userId}},\r\n   \"title\":\"{{title}}\",\r\n   \"body\":\"{{body}}\"\r\n}"
+						},
+						"url": {
+							"raw": "{{host}}/{{pathPosts}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"{{pathPosts}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "This folder contains endpoint and tests for Post Api",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "046394ee-7e34-4520-8bfb-e39b0de6abfd",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "62cc6ce7-7026-42cf-97e9-8bb7cf0e9b03",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	]
+}
